@@ -1,10 +1,11 @@
 # Aidan
 # Some code taken from article http://blockxchain.org/2017/06/04/building-a-blockchain-with-python-1/
 
+#hashlib library needs to be installed prior to running.
 import hashlib
 import time
 
-
+#Block class. Used to create blocks. Blocks are then added to the blockchain.
 class Block:
     def __init__(self, index, previousHash, timestamp, data, currentHash):
         self.index = index
@@ -13,14 +14,14 @@ class Block:
         self.data = data
         self.currentHash = currentHash
 
-
+#Used to create the genesis block and verify following blocks.
 def getGenesisBlock():
     return Block(0, '0', '1496518102.896031', "My very first block :)", '0q23nfa0se8fhPH234hnjldapjfasdfansdf23')
 
-
+#Creates the 'chain' with the genesis block.
 blockchain = [getGenesisBlock()]
 
-
+#Calculates the hash of the block contents.
 def calculateHash(index, previousHash, timestamp, data):
     value = str(index) + str(previousHash) + str(timestamp) + str(data)
     sha = hashlib.sha256(value.encode('utf-8'))
@@ -69,7 +70,7 @@ def isValidNewBlock(newBlock, previousBlock):
         return False
     return True
 
-
+#Validates chain. Checks through each block in the chain to make sure they are all valid.
 def isValidChain(bcToValidate):
     if not isSameBlock(bcToValidate[0], getGenesisBlock()):
         print('Genesis Block Incorrect')
