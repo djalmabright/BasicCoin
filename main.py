@@ -126,7 +126,7 @@ def isValidChain(bcToValidate):
 def main():
     while (isValidChain(blockchain)):
         print("--------------")
-        print("Latest Bock")
+        print("Latest Block")
         print("--------------")
         print("Block Height: ", getLatestBlock().index)
         print("Difficulty: ", getLatestBlock().difficulty)
@@ -136,7 +136,9 @@ def main():
         print("Data: ", getLatestBlock().data)
         print("Current Hash: ", getLatestBlock().currentHash)
         print("--------------")
+        print(blockchain)
         blockchain.append(generateNextBlock("Next Block In The Chain!!!"))
+         
 
         #time.sleep(1)
 
